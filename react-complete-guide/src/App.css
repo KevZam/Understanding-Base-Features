@@ -14,3 +14,19 @@
   background-color: lightgreen;
   color: black;
 }
+
+.red {
+  color: red;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.button.Red {
+  background-color: red;
+}
+
+.button.Red:hover {
+  background-color: salmon;
+}
