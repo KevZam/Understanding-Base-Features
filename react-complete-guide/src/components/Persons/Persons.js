@@ -10,7 +10,11 @@ class Persons extends Component {
   // Should component update will return a boolean as to whether or not it should keep updating.
   shouldComponentUpdate(nextProps, nextState) {
     console.log("[Persons.js] shouldComponentUpdate");
-    return true;
+    if (nextProps.persons !== this.props.persons) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   // You can use getSnapshotBefore update to grab a snapshot and pass that information to componentDidUpdate
@@ -24,6 +28,11 @@ class Persons extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     console.log("[Persons.js] ComponentDidUpdate");
     console.log(snapshot);
+  }
+
+  // componentwillUnmount is used to cleanup anything after the component is removed.
+  componentWillUnmount() {
+    console.log("[Persons.js] ComponentWillUnmount");
   }
 
   render() {
