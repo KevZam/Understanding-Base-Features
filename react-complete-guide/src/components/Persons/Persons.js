@@ -1,21 +1,24 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Person from "./Person/Person";
 
-class Persons extends Component {
+// We use a PureComponent here to basically have the same functionality of 
+// shouldComponentUpdate. But a PureComponent basically checks for changes in all of 
+// the props by default so you don't have to manually check them. 
+class Persons extends PureComponent {
   //   static getDerivedStateFromProps(props, state) {
   //     console.log("[Persons.js] getDerivedStateFromProps");
   //     return state;
   //   }
 
   // Should component update will return a boolean as to whether or not it should keep updating.
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("[Persons.js] shouldComponentUpdate");
-    if (nextProps.persons !== this.props.persons) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log("[Persons.js] shouldComponentUpdate");
+  //   if (nextProps.persons !== this.props.persons) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   // You can use getSnapshotBefore update to grab a snapshot and pass that information to componentDidUpdate
   // if you want it to do something with that info
