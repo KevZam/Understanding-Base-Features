@@ -30,6 +30,7 @@ class Persons extends Component {
     console.log(snapshot);
   }
 
+  // test commit 
   // componentwillUnmount is used to cleanup anything after the component is removed.
   componentWillUnmount() {
     console.log("[Persons.js] ComponentWillUnmount");
