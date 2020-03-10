@@ -75,6 +75,10 @@ class App extends Component {
     // set the person at the personIndex to the new person object that we created
     persons[personIndex] = person;
 
+    // You can pass a function into setState where you can use the previous state
+    // effectively to avoid the prev state not being what you expect due to it being
+    //changed elsewhere since it is not run immediately. You MUST use this syntax
+    // when changing the state to something that relies on the old state
     this.setState((prevState, props) => {
       return {
         persons: persons,
