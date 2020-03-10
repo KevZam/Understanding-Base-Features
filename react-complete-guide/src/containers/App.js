@@ -3,6 +3,7 @@ import classes from "./App.css";
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 import "./App.css";
+import WithClass from "../hoc/WithClass"
 
 class App extends Component {
   constructor(props) {
@@ -98,14 +99,14 @@ class App extends Component {
     }
 
     return (
-      <div className={classes.App}>
+      <WithClass classes={classes.App}>
         <Cockpit
           clicked={this.togglePersonsHandler}
           showPersons={this.state.showPersons}
           personsLength={this.state.persons.length}
         ></Cockpit>
         {persons}
-      </div>
+      </WithClass>
     );
   }
 }
