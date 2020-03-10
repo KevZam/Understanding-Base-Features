@@ -5,6 +5,7 @@ import Cockpit from "../components/Cockpit/Cockpit";
 import "./App.css";
 import withClass from "../hoc/WithClass";
 import Aux from "../hoc/Aux";
+import AuthContext from "../context/auth-context";
 
 class App extends Component {
   constructor(props) {
@@ -41,7 +42,9 @@ class App extends Component {
     ],
     otherstate: "other state value",
     showPersons: false,
-    changeCounter: 0
+    changeCounter: 0,
+    showCockpit: true,
+    authenticated: false
   };
 
   // Because objects and arrays are passed by reference, we will accidentally mutate the actual state
@@ -92,6 +95,12 @@ class App extends Component {
     this.setState({ showPersons: !doesShow });
   };
 
+  loginHandler = () => {
+    this.setState({
+      authenticated: true
+    });
+  };
+
   render() {
     console.log("[App.js] render");
 
@@ -103,18 +112,36 @@ class App extends Component {
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
           changed={this.nameChangedHandler}
+          isAuthenticated={this.state.authenticated}
         ></Persons>
       );
     }
 
     return (
       <Aux>
-        <Cockpit
-          clicked={this.togglePersonsHandler}
-          showPersons={this.state.showPersons}
-          personsLength={this.state.persons.length}
-        ></Cockpit>
-        {persons}
+        <button
+          onClick={() => {
+            this.setState({ showCockpit: false });
+          }}
+        >
+          Remove Cockpit
+        </button>
+        <AuthContext.Provider
+          value={{
+            authenticated: this.state.authenticated,
+            login: this.loginHandler
+          }}
+        >
+          {this.state.showCockpit ? (
+            <Cockpit
+              clicked={this.togglePersonsHandler}
+              showPersons={this.state.showPersons}
+              personsLength={this.state.persons.length}
+              login={this.loginHandler}
+            ></Cockpit>
+          ) : null}
+          {persons}
+        </AuthContext.Provider>
       </Aux>
     );
   }

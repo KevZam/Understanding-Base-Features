@@ -1,9 +1,9 @@
 import React, { PureComponent } from "react";
 import Person from "./Person/Person";
 
-// We use a PureComponent here to basically have the same functionality of 
-// shouldComponentUpdate. But a PureComponent basically checks for changes in all of 
-// the props by default so you don't have to manually check them. 
+// We use a PureComponent here to basically have the same functionality of
+// shouldComponentUpdate. But a PureComponent basically checks for changes in all of
+// the props by default so you don't have to manually check them.
 class Persons extends PureComponent {
   //   static getDerivedStateFromProps(props, state) {
   //     console.log("[Persons.js] getDerivedStateFromProps");
@@ -33,7 +33,7 @@ class Persons extends PureComponent {
     console.log(snapshot);
   }
 
-  // test commit 
+  // test commit
   // componentwillUnmount is used to cleanup anything after the component is removed.
   componentWillUnmount() {
     console.log("[Persons.js] ComponentWillUnmount");
@@ -49,6 +49,7 @@ class Persons extends PureComponent {
           age={person.age}
           key={person.id}
           changed={event => this.props.changed(event, person.id)}
+          isAuth={this.props.isAuthenticated}
         />
       );
     });

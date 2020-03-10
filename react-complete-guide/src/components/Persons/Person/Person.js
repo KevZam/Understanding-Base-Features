@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import classes from "./Person.css";
 import Aux from "../../../hoc/Aux";
 import withClass from "../../../hoc/WithClass";
+import AuthContext from "../../../context/auth-context";
 
 class Person extends Component {
   // We can create references to specific elements in our code by using React's
@@ -20,6 +21,12 @@ class Person extends Component {
       // The props.children accesses whatever elements or text are inside each component in between the
       // opening and closing tags.
       <Aux>
+        <AuthContext.Consumer>
+          {context =>
+            context.authenticated ? <p>Authenticated</p> : <p>Please log in</p>
+          }
+        </AuthContext.Consumer>
+
         <p onClick={this.props.click}>
           I'm {this.props.name} and I am {this.props.age} years old!
         </p>
