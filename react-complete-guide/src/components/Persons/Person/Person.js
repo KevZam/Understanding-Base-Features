@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import classes from "./Person.css";
 import Aux from "../../../hoc/Aux";
 import withClass from "../../../hoc/withClass";
@@ -22,5 +23,15 @@ class Person extends Component {
     );
   }
 }
+
+// propTypes is a special property which you add to any object or component where
+// React will watch out for in dev mode and give a warning if you don't give the
+// right type of props
+Person.propTypes = {
+  click: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
+  changed: PropTypes.func
+};
 
 export default withClass(Person, classes.Person);
