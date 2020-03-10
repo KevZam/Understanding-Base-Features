@@ -3,7 +3,7 @@ import classes from "./App.css";
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 import "./App.css";
-import withClass from "../hoc/withClass";
+import withClass from "../hoc/WithClass";
 import Aux from "../hoc/Aux";
 
 class App extends Component {

@@ -2,9 +2,19 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import classes from "./Person.css";
 import Aux from "../../../hoc/Aux";
-import withClass from "../../../hoc/withClass";
+import withClass from "../../../hoc/WithClass";
 
 class Person extends Component {
+  // We can create references to specific elements in our code by using React's
+  // createRef function. After we define it as part of the constructor, we can attach
+  // ref to the input element below and reference this.inputElementRef
+  constructor(props) {
+    super(props);
+    this.inputElementRef = React.createRef();
+  }
+  componentDidMount() {
+    this.inputElementRef.current.focus();
+  }
   render() {
     return (
       // The props.children accesses whatever elements or text are inside each component in between the
@@ -16,6 +26,7 @@ class Person extends Component {
         <p>{this.props.children}</p>
         <input
           type="text"
+          ref={this.inputElementRef}
           onChange={this.props.changed}
           value={this.props.name}
         />
@@ -35,4 +46,3 @@ Person.propTypes = {
 };
 
 export default withClass(Person, classes.Person);
-// test
