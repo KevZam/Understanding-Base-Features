@@ -40,7 +40,8 @@ class App extends Component {
       { id: 3, name: "Stephanie", age: 26 }
     ],
     otherstate: "other state value",
-    showPersons: false
+    showPersons: false,
+    changeCounter: 0
   };
 
   // Because objects and arrays are passed by reference, we will accidentally mutate the actual state
@@ -74,8 +75,11 @@ class App extends Component {
     // set the person at the personIndex to the new person object that we created
     persons[personIndex] = person;
 
-    this.setState({
-      persons: persons
+    this.setState((prevState, props) => {
+      return {
+        persons: persons,
+        changeCounter: prevState.changeCounter + 1
+      };
     });
   };
 
