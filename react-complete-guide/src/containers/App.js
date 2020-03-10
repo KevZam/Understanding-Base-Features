@@ -3,7 +3,8 @@ import classes from "./App.css";
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 import "./App.css";
-import WithClass from "../hoc/WithClass"
+import withClass from "../hoc/withClass";
+import Aux from "../hoc/Aux";
 
 class App extends Component {
   constructor(props) {
@@ -99,17 +100,17 @@ class App extends Component {
     }
 
     return (
-      <WithClass classes={classes.App}>
+      <Aux>
         <Cockpit
           clicked={this.togglePersonsHandler}
           showPersons={this.state.showPersons}
           personsLength={this.state.persons.length}
         ></Cockpit>
         {persons}
-      </WithClass>
+      </Aux>
     );
   }
 }
 
 // Higher order component, basically just adding some extra features and syntax to our app
-export default App;
+export default withClass(App, classes.App);
