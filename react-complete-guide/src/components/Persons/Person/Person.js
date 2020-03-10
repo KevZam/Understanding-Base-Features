@@ -35,3 +35,4 @@ Person.propTypes = {
 };
 
 export default withClass(Person, classes.Person);
+// test
