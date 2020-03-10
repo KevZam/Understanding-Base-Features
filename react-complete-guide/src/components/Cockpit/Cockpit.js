@@ -1,14 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import classes from "./Cockpit.css";
 
 const cockpit = props => {
-  // useEffect executes for every render cycle of the cockpit
+  // initialize toggleBtnRef for functional components
+  const toggleBtnRef = useRef(null);
+
+  // useEffect executes after every render cycle of the cockpit
   useEffect(() => {
     console.log("[Cockpit.js] useEffect");
-    // Http request...
-    setTimeout(() => {
-      alert("Saved data to cloud!");
-    }, 1000);
+    // We click the reference here instead of immediately after the initialization of
+    // the toggleBtn because React needs a chance to first render the button before we
+    // click it. Since useEffect will run after it is rendered for the first time as
+    // we specified with the [] as the second argument, it will render to the DOM
+    // before using this click reference.
+    toggleBtnRef.current.click();
     return () => {
       console.log("[Cockpit.js] cleanup work in useEffect");
     };
@@ -34,7 +39,7 @@ const cockpit = props => {
     <div classes={classes.Cockpit}>
       <h1>Hi, I'm a React App</h1>
       <p className={assignedClasses.join(" ")}>This is really working!</p>
-      <button onClick={props.clicked} className={btnClass}>
+      <button ref={toggleBtnRef} onClick={props.clicked} className={btnClass}>
         {" "}
         Toggle Persons{" "}
       </button>
